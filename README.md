@@ -10,12 +10,12 @@ This is only a simple implementation to skip browser connect limitations in linu
 
 # How to use this image
 
-    docker run --name rocavpn -e JUNIPER_HOST=<host> -e JUNIPER_USER=<user> -e JUNIPER_PASSWORD=<password> --privileged=true -d -ti jamgocoop/juniper-vpn
+    docker run --name junipervpn -e JUNIPER_HOST=<host> -e JUNIPER_USER=<user> -e JUNIPER_PASSWORD=<password> --privileged=true -d -ti jamgocoop/juniper-vpn
 
 Once started you can route subnets from host via docker container:
 
     #! /bin/bash
-    JUNIPER_DOCKER_IP="$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' rocavpn)"
+    JUNIPER_DOCKER_IP="$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' junipervpn)"
     if [ -z "$JUNIPER_DOCKER_IP" ]; then
     	echo >&2 'error: missing JUNIPER_DOCKER_IP, is rocavpn docker running?'
     	exit 1;
